@@ -1,13 +1,23 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
+    <h1>Lista de Personagens crua</h1>
+    <span>{{ listPersonagens }}</span>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: "Home",
+  created() {
+    this.getPersonagens();
+  },
+  methods: {
+    ...mapActions(["getPersonagens"]),
+  },
+  computed: {
+    ...mapGetters(["listPersonagens"]),
+  },
 };
 </script>
