@@ -9,7 +9,7 @@
 import { mapActions, mapGetters } from "vuex";
 
 export default {
-  name: "Home",
+  name: "Personagens",
   created() {
     this.getPersonagens();
   },
