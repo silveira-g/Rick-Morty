@@ -7,7 +7,7 @@ export default {
 
     },
     mutations: {
-        SET_LOCAIS(state, pauload) {
+        SET_LOCAIS(state, payload) {
             state.locais = payload
         }
     },

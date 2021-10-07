@@ -6,10 +6,12 @@ Vue.use(Vuex)
 
 import personagem from "./modules/personagem"
 import local from "./modules/local"
+import episodio from "./modules/episodio"
 
 export default new Vuex.Store({
   modules: {
     personagem,
-    local
+    local,
+    episodio
   }
 })
