@@ -10,6 +10,14 @@ export default {
 
         })
 
+    },
+
+    getPersonagemById(id) {
+        return api.get(`/character/${id}`).then(res => {
+            return res
+        }).catch(error => {
+            return error
+        })
     }
 
 }
