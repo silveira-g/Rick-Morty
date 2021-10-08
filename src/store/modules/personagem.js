@@ -4,7 +4,8 @@ export default {
     namespaced: true,
     state: {
         personagens: [],
-        personagemDetalhes: []
+        personagemDetalhes: [],
+        pageIndex: 1
     },
     mutations: {
         SET_PERSONAGENS(state, payload) {
@@ -12,6 +13,16 @@ export default {
         },
         SET_DETALHES_PERSONAGEM(state, payload) {
             state.personagemDetalhes = payload
+        },
+        SET_PERSONAGENS_PAGINADOS(state, payload) {
+            state.personagens = payload
+        },
+
+        SET_PAGE_INDEX(state, page) {
+            state.pageIndex = state.pageIndex + page
+        },
+        REMOVE_PAGE_INDEX(state, page) {
+            state.pageIndex = state.pageIndex - page
         }
     },
     actions: {
@@ -20,9 +31,14 @@ export default {
                 context.commit("SET_PERSONAGENS", res.data.results);
             });
         },
-        getPersonagemById(contex, id) {
+        getPersonagemById(context, id) {
             return serviceApi.getPersonagemById(id).then(res => {
-                contex.commit('SET_DETALHES_PERSONAGEM', res.data)
+                context.commit('SET_DETALHES_PERSONAGEM', res.data)
+            })
+        },
+        getPersonagemByPage(context, params) {
+            return serviceApi.getPersonagemByPage(params.id).then(res => {
+                context.commit('SET_PERSONAGENS_PAGINADOS', res.data.results);
             })
         }
     },
@@ -32,6 +48,9 @@ export default {
         },
         listDetalhesPersonagem(state) {
             return state.personagemDetalhes
+        },
+        getPageIndex(state) {
+            return state.pageIndex;
         }
     },
 };

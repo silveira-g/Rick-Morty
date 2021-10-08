@@ -18,6 +18,14 @@ export default {
         }).catch(error => {
             return error
         })
+    },
+
+    getPersonagemByPage(id) {
+        return api.get(`/character/?page=${id}`).then(res => {
+            return res
+        }).catch(error => {
+            return error
+        })
     }
 
 }

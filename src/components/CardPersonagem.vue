@@ -41,13 +41,19 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 export default {
   name: "CardPersonagem",
+  data() {
+    return {
+      pageNumber: 1,
+    };
+  },
   computed: {
-    ...mapGetters("personagem", ["listPersonagens"]),
+    ...mapGetters("personagem", ["listPersonagens", "getPageIndex"]),
   },
   methods: {
+    ...mapActions("personagem", ["getPersonagemByPage"]),
     speciesTranslate(specie) {
       if (specie === "Human") {
         return "Humano";
@@ -71,7 +77,7 @@ export default {
         id: id,
         pageIndex: this.pageNumber,
       };
-      this.getpersonagemByPage(params).then(() => {
+      this.getPersonagemByPage(params).then(() => {
         this.$store.commit("personagem/SET_PAGE_INDEX", params.pageIndex);
       });
     },
